@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    // buttons div concepts css
+    // buttons div concepts
     <div>
       <button type="button" class="btn btn-primary">
         Primary
