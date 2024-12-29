@@ -9,9 +9,10 @@ function App() {
       <AppName></AppName>
 
       <AddTodo></AddTodo>
-
-      <TodoItem1></TodoItem1>
-      <TodoItem2></TodoItem2>
+      <div className="todoitems">
+        <TodoItem1></TodoItem1>
+        <TodoItem2></TodoItem2>
+      </div>
     </center>
   );
 }

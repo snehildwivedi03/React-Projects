@@ -1,0 +1,21 @@
+.heading1 {
+  font-weight: 700;
+  font-size: 45px;
+  margin: 15px;
+  margin-bottom: 20px;
+}
+input {
+  width: 100%;
+}
+.todoitems {
+  text-align: left;
+}
+.myrow {
+  margin: 10px 5px;
+}
+.mybtn {
+  min-width: 100px;
+}
+.mybtnadd {
+  min-width: 98px;
+}
