@@ -18,4 +18,5 @@ input {
 }
 .mybtnadd {
   min-width: 98px;
+  margin-left: -98px;
 }
