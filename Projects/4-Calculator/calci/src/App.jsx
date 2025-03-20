@@ -1,11 +1,11 @@
-import "./App.css";
-
+import styles from "./App.module.css";
+import Display from "./components/Display";
+import BtnContainer from "./components/BtnContainer";
 function App() {
   return (
-    <div id="calculator">
-      <input type="text" id="display" />
-      <div id="btn-container"></div>
-      <button>C</button>
+    <div className={styles.container}>
+      <Display></Display>
+      <BtnContainer></BtnContainer>
     </div>
   );
 }
