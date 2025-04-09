@@ -1,4 +1,5 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import FoodItem from "./components/FoodItems";
 import ErrorMsg from "./components/ErrorMsg";
 import Container from "./components/Container";
