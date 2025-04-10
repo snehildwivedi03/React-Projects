@@ -3,13 +3,23 @@ import Display from "./components/Display";
 import BtnContainer from "./components/BtnContainer";
 import { useState } from "react";
 function App() {
-  let [calVal, setCalVal] = useState("34");
+  const [calVal, setCalVal] = useState("");
+  const onButtonClick = (buttonText) => {
+    console.log(buttonText);
+    if (buttonText === "C") {
+      setCalVal("");
+    } else if (buttonText === "=") {
+      const result = eval(calVal);
+      setCalVal(result);
+    } else {
+      const neeDisplayVal = calVal + buttonText;
+      setCalVal(neeDisplayVal);
+    }
+  };
   return (
     <div className={styles.container}>
       <Display displayValue={calVal}></Display>
-      <BtnContainer
-        onButtonClick={() => console.log("Button is Clicked")}
-      ></BtnContainer>
+      <BtnContainer onButtonClick={onButtonClick}></BtnContainer>
     </div>
   );
 }

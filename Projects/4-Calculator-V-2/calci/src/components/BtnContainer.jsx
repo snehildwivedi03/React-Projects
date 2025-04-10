@@ -27,7 +27,7 @@ const BtnContainer = ({ onButtonClick }) => {
           <button
             key={btnName}
             className={styles.buttons}
-            onClick={onButtonClick}
+            onClick={() => onButtonClick(btnName)}
           >
             {btnName}
           </button>
