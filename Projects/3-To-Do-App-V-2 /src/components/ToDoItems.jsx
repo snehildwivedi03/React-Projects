@@ -7,6 +7,7 @@ const ToDoItems = ({ toDoItems, onClickDeleteBtn }) => {
         <TodoItem
           toDoDate={item.date}
           toDoItem={item.name}
+          key={item.name}
           onClickDeleteBtn={onClickDeleteBtn}
         ></TodoItem>
       ))}

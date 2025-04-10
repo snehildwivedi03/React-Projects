@@ -7,14 +7,12 @@ import { useState } from "react";
 function App() {
   const [toDoItems, setToDoItems] = useState([]);
   const handleOnNewItem = (itemName, itemDueDate) => {
-    console.log(`New Item Added: ${itemName} - Date:${itemDueDate}`);
     const newToDoItem = [...toDoItems, { name: itemName, date: itemDueDate }];
     setToDoItems(newToDoItem);
   };
   const handleDeleteItem = (toDoItemName) => {
     const newtoDoItem = toDoItems.filter((item) => item.name != toDoItemName);
     setToDoItems(newtoDoItem);
-    console.log("Item deleted: " + " " + toDoItemName);
   };
   return (
     <center className="todo-container">

@@ -1,9 +1,9 @@
 import { useState } from "react";
-
+import { GrChapterAdd } from "react-icons/gr";
 function AddTodo({ onNewItem }) {
-  const [toDoName, setToDoName] = useState();
-  const [toDoDate, setToDoDate] = useState();
-
+  const [toDoName, setToDoName] = useState("");
+  const [toDoDate, setToDoDate] = useState("");
+  const [errMsg, setErrMsg] = useState("");
   const handleNameChange = (event) => {
     setToDoName(event.target.value);
   };
@@ -12,9 +12,16 @@ function AddTodo({ onNewItem }) {
   };
 
   const handleAddBtnClick = () => {
+    if (toDoName.trim() === "" || toDoDate.trim() === "") {
+      setErrMsg("Please enter a valid name and date");
+      return;
+    }
+
     onNewItem(toDoName, toDoDate);
+
     setToDoDate("");
     setToDoName("");
+    setErrMsg("");
   };
 
   return (
@@ -37,10 +44,16 @@ function AddTodo({ onNewItem }) {
             className="btn btn-success mybtnadd"
             onClick={handleAddBtnClick}
           >
-            Add
+            <GrChapterAdd />
           </button>
         </div>
       </div>
+      {/* {Error Message} */}
+      {errMsg && (
+        <div className="row mt 2">
+          <div className="col text-danger">{errMsg}</div>
+        </div>
+      )}
     </div>
   );
 }
