@@ -10,7 +10,7 @@ function AddTodo({ onNewItem }) {
   const handleDateChange = (event) => {
     setToDoDate(event.target.value);
   };
-
+  //Condition for empty input}
   const handleAddBtnClick = () => {
     if (toDoName.trim() === "" || toDoDate.trim() === "") {
       setErrMsg("Please enter a valid name and date");
