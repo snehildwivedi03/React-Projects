@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { GrChapterAdd } from "react-icons/gr";
 function AddTodo({ onNewItem }) {
   const [toDoName, setToDoName] = useState("");
   const [toDoDate, setToDoDate] = useState("");
   const [errMsg, setErrMsg] = useState("");
+
+  const noOfUpdates = useRef(0);
   const handleNameChange = (event) => {
     setToDoName(event.target.value);
+    noOfUpdates.current += 1;
   };
   const handleDateChange = (event) => {
     setToDoDate(event.target.value);
+    console.log(`No of updates: ${noOfUpdates.current}`);
   };
 
   const handleAddBtnClick = (event) => {
