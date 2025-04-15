@@ -10,6 +10,8 @@ function AddTodo({ onNewItem }) {
     event.preventDefault();
     const toDoName = toDoNameRef.current.value;
     const toDoDate = dueDateRef.current.value;
+    toDoNameRef.current.value = "";
+    dueDateRef.current.value = "";
 
     if (toDoName.trim() === "" || toDoDate.trim() === "") {
       setErrMsg("Please enter a valid name and date");
