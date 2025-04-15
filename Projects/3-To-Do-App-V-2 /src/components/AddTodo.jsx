@@ -26,7 +26,7 @@ function AddTodo({ onNewItem }) {
 
   return (
     <div className="container text-center">
-      <div className="row myrow">
+      <form className="row myrow" onSubmit={handleAddBtnClick}>
         <div className="col-6">
           <input
             type="text"
@@ -39,15 +39,11 @@ function AddTodo({ onNewItem }) {
           <input type="date" value={toDoDate} onChange={handleDateChange} />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success mybtnadd"
-            onClick={handleAddBtnClick}
-          >
+          <button type="button" className="btn btn-success mybtnadd">
             <GrChapterAdd />
           </button>
         </div>
-      </div>
+      </form>
       {/* {Error Message} */}
       {errMsg && (
         <div className="row mt 2">
