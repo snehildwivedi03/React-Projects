@@ -6,9 +6,12 @@ import "./App.css";
 import { useState } from "react";
 function App() {
   const [toDoItems, setToDoItems] = useState([]);
+
   const handleOnNewItem = (itemName, itemDueDate) => {
-    const newToDoItem = [...toDoItems, { name: itemName, date: itemDueDate }];
-    setToDoItems(newToDoItem);
+    setToDoItems((currValue) => [
+      ...currValue,
+      { name: itemName, date: itemDueDate },
+    ]);
   };
   const handleDeleteItem = (toDoItemName) => {
     const newtoDoItem = toDoItems.filter((item) => item.name != toDoItemName);
