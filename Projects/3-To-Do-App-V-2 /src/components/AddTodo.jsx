@@ -11,7 +11,9 @@ function AddTodo({ onNewItem }) {
     setToDoDate(event.target.value);
   };
 
-  const handleAddBtnClick = () => {
+  const handleAddBtnClick = (event) => {
+    event.preventDefault();
+
     if (toDoName.trim() === "" || toDoDate.trim() === "") {
       setErrMsg("Please enter a valid name and date");
       return;
@@ -39,7 +41,7 @@ function AddTodo({ onNewItem }) {
           <input type="date" value={toDoDate} onChange={handleDateChange} />
         </div>
         <div className="col-2">
-          <button type="button" className="btn btn-success mybtnadd">
+          <button type="submit" className="btn btn-success mybtnadd">
             <GrChapterAdd />
           </button>
         </div>
