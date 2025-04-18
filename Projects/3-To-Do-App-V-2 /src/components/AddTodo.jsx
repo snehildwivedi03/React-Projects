@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { GrChapterAdd } from "react-icons/gr";
 function AddTodo({ onNewItem }) {
   const [errMsg, setErrMsg] = useState("");
-
+  // Useing useRef
   const toDoNameRef = useRef();
   const dueDateRef = useRef();
 
