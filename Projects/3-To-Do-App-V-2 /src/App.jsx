@@ -22,7 +22,7 @@ function App() {
       <AppName></AppName>
 
       <AddTodo onNewItem={handleOnNewItem}></AddTodo>
-      {toDoItems.length === 0 && <WelcomeMsg></WelcomeMsg>}
+      <WelcomeMsg toDoItems={toDoItems}></WelcomeMsg>
       <ToDoItems
         toDoItems={toDoItems}
         onClickDeleteBtn={handleDeleteItem}

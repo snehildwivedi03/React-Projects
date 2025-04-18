@@ -1,10 +1,8 @@
 import styles from "./WelcomeMsg.module.css";
 import React from "react";
-const WelcomeMsg = () => {
+const WelcomeMsg = ({ toDoItems }) => {
   return (
-    <div>
-      <p className={styles.welHead}>Enjoy Your Day</p>
-    </div>
+    toDoItems.length === 0 && <p className={styles.welHead}>Enjoy Your Day</p>
   );
 };
 
