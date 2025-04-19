@@ -1,10 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { GrChapterAdd } from "react-icons/gr";
+import { TodoItemContext } from "../store/ToDoItems-Store";
 function AddTodo({ onNewItem }) {
-  const [errMsg, setErrMsg] = useState("");
-  // Useing useRef
+  const { addNewItem } = useContext(TodoItemContext);
   const toDoNameRef = useRef();
   const dueDateRef = useRef();
+  const [errMsg, setErrMsg] = useState("");
 
   const handleAddBtnClick = (event) => {
     event.preventDefault();
@@ -18,7 +19,7 @@ function AddTodo({ onNewItem }) {
       return;
     }
 
-    onNewItem(toDoName, toDoDate);
+    addNewItem(toDoName, toDoDate);
 
     setErrMsg("");
   };
