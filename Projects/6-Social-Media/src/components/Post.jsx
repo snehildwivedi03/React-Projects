@@ -11,6 +11,7 @@ const Post = ({ post }) => {
               <RiDeleteBin5Fill />
             </span>
           </h5>
+          {/* This is a comment */}
           <h6 className="card-subtitle mb-2 text-body-secondary">
             {post.subtitle}
           </h6>
