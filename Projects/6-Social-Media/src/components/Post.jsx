@@ -1,5 +1,10 @@
 import React from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import { BiLike } from "react-icons/bi";
+import { BiDislike } from "react-icons/bi";
+import { FaRegHeart } from "react-icons/fa";
+import { BsFillEmojiSurpriseFill } from "react-icons/bs";
+import { BsFillEmojiTearFill } from "react-icons/bs";
 const Post = ({ post }) => {
   return (
     <>
@@ -26,6 +31,15 @@ const Post = ({ post }) => {
               </span>
             );
           })}
+          <div class="alert alert-success reactions" role="alert">
+            <div className="reaction-icons d-flex gap-3 fs-4">
+              <BiLike />
+              <BiDislike />
+              <FaRegHeart />
+              <BsFillEmojiSurpriseFill />
+              <BsFillEmojiTearFill />
+            </div>
+          </div>
         </div>
       </div>
     </>
