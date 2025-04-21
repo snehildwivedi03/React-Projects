@@ -13,6 +13,7 @@ const CreatePostForm = () => {
   const postSubtitleElement = useRef();
   const postBodyElement = useRef();
   const postTagsElement = useRef();
+  const formRef = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,10 +23,15 @@ const CreatePostForm = () => {
     const postBody = postBodyElement.current.value;
     const postTags = postTagsElement.current.value.split(" ");
     addPost(userId, postTitle, postSubtitle, postBody, postTags);
+    formRef.current.reset();
   };
   return (
     <>
-      <form className="post-container m-5 w-75 rounded" onSubmit={handleSubmit}>
+      <form
+        className="post-container m-5 w-75 rounded"
+        ref={formRef}
+        onSubmit={handleSubmit}
+      >
         <div className="mb-3 ">
           <label htmlFor="title" className="form-label">
             User Id
