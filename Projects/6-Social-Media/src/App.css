@@ -1,5 +1,6 @@
 .app-container {
   display: flex;
+  background-color: aliceblue;
 }
 .content {
   width: 100%;
@@ -13,8 +14,11 @@
 }
 .no-caret {
   caret-color: transparent;
-  pointer-events: none;
+  /* pointer-events: none; */
   user-select: none;
+}
+.delete-icon {
+  cursor: pointer;
 }
 .reactions {
   margin: 10px 0 0 0;

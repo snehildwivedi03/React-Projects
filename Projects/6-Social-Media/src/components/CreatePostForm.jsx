@@ -3,8 +3,8 @@ import React from "react";
 const CreatePostForm = () => {
   return (
     <>
-      <form>
-        <div className="mb-3">
+      <form className="post-container m-5 w-75">
+        <div className="mb-3 ">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
