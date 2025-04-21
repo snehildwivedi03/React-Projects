@@ -26,7 +26,8 @@ const CreatePostForm = () => {
             required
           />
         </div>
-        {/* cmt */}
+        {/* cmnt */}
+
         <div className="mb-3 ">
           <label htmlFor="title" className="form-label">
             Post Title
