@@ -22,7 +22,7 @@ const PostListProvider = ({ children }) => {
     DEFAULT_POST_LIST
   );
 
-  const addPost = () => {};
+  const addPost = (userId, postTitle, postBody, postTags) => {};
   const deletePost = ({ postId }) => {
     dispatchPostList({
       type: "DELETE_POST",
