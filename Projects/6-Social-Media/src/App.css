@@ -23,3 +23,10 @@
 .reactions {
   margin: 10px 0 0 0;
 }
+.post-action {
+  width: 25%;
+  padding: 50px 50px;
+}
+.reaction-icons {
+  cursor: pointer;
+}
