@@ -4,7 +4,7 @@ import { FaVideo } from "react-icons/fa";
 import { PiGifFill } from "react-icons/pi";
 import { GoPaperclip } from "react-icons/go";
 
-import PostList from "./PostList";
+import { PostList } from "../store/PostListStore";
 
 const CreatePostForm = () => {
   const { addPost } = useContext(PostList);
