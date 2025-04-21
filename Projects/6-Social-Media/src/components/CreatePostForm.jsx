@@ -10,6 +10,7 @@ const CreatePostForm = () => {
   const { addPost } = useContext(PostList);
   const userIdElement = useRef();
   const postTitleElement = useRef();
+  const postSubtitleElement = useRef();
   const postBodyElement = useRef();
   const postTagsElement = useRef();
 
@@ -17,9 +18,10 @@ const CreatePostForm = () => {
     event.preventDefault();
     const userId = userIdElement.current.value;
     const postTitle = postTitleElement.current.value;
+    const postSubtitle = postSubtitleElement.current.value;
     const postBody = postBodyElement.current.value;
-    const postTags = postTagsElement.current.value.split(/(\s)/);
-    addPost(userId, postTitle, postBody, postTags);
+    const postTags = postTagsElement.current.value.split(" ");
+    addPost(userId, postTitle, postSubtitle, postBody, postTags);
   };
   return (
     <>
@@ -50,6 +52,19 @@ const CreatePostForm = () => {
             id="title"
             placeholder="Enter the title"
             required
+          />
+        </div>
+
+        <div className="mb-3 ">
+          <label htmlFor="title" className="form-label">
+            Post Subtitle
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            ref={postSubtitleElement}
+            id="title"
+            placeholder="Enter the subtitle"
           />
         </div>
         <div className="mb-3 rounded ">
@@ -85,7 +100,11 @@ const CreatePostForm = () => {
             <PiGifFill className="reaction-icons" />
           </div>
         </div>
-        <button type="submit" className="btn btn-info w-25">
+        <button
+          type="submit"
+          className="btn btn-info w-25"
+          onClick={() => alert("Post Created")}
+        >
           Post
         </button>
       </form>
