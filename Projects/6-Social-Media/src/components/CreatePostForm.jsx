@@ -5,8 +5,7 @@ import { PiGifFill } from "react-icons/pi";
 import { GoPaperclip } from "react-icons/go";
 
 import { PostList } from "../store/PostListStore";
-// useRef hook
-// useRef is a hook that returns a mutable ref object whose .current
+
 const CreatePostForm = () => {
   const { addPost } = useContext(PostList);
   const userIdElement = useRef();
