@@ -5,7 +5,7 @@ const Sidebar = ({ selectedTab, setSelectedTab }) => {
     setSelectedTab(tabName);
   };
   // Return satement
-  //Return statement
+
   return (
     <>
       {/* sidebar */}
