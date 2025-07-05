@@ -30,3 +30,33 @@
 .reaction-icons {
   cursor: pointer;
 }
+.welcome-msg {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-size: 32px;
+  color: #555;
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust if you want more vertical space */
+  margin-top: 100px; /* Adds space from the top */
+}
+
+.loading-spinner {
+  width: 120px; /* Increased size */
+  height: 120px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

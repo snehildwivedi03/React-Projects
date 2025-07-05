@@ -27,16 +27,14 @@ const Post = ({ post }) => {
             {post.subtitle}
           </h6>
           <p className="card-text">{post.body}</p>
-          {post.tags.map((tag, index) => {
-            return (
-              <span
-                className="badge text-bg-primary me-1 cursor-pointer"
-                key={index}
-              >
-                {tag}
-              </span>
-            );
-          })}
+          {post.tags?.map((tag) => (
+            <span
+              className="badge text-bg-primary me-1 cursor-pointer"
+              key={tag}
+            >
+              {tag}
+            </span>
+          ))}
           <div className="alert alert-success reactions" role="alert">
             <div className="reaction-icons d-flex gap-4 fs-4">
               <BiLike />

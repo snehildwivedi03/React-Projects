@@ -1,33 +1,38 @@
-import { useReducer } from "react";
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 
+// ✅ Named export: use this when importing context in other components
 export const PostList = createContext({
   postList: [],
   addPost: () => {},
+  addInitalPost: () => {},
   deletePost: () => {},
 });
+
+// ✅ Reducer function
 const postListReducer = (currPostList, action) => {
-  let newPostList = currPostList;
-  if (action.type === "DELETE_POST") {
-    newPostList = currPostList.filter(
-      (post) => post.id != action.payload.postId
-    );
-  } else if (action.type === "ADD_POST") {
-    newPostList = [action.payload, ...currPostList];
+  switch (action.type) {
+    case "DELETE_POST":
+      return currPostList.filter((post) => post.id !== action.payload.postId);
+
+    case "ADD_POST":
+      return [action.payload, ...currPostList];
+
+    case "ADD_INITIAL_POST":
+      return [...action.payload, ...currPostList];
+
+    default:
+      return currPostList;
   }
-  return newPostList;
 };
 
+// ✅ Provider component
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(
-    postListReducer,
-    DEFAULT_POST_LIST
-  );
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
 
+  // Add single post
   const addPost = (userId, postTitle, postSubtitle, postBody, postTags) => {
-    var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    var uniqid = randLetter + Date.now();
-    console.log(uniqid);
+    const randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    const uniqid = randLetter + Date.now();
 
     dispatchPostList({
       type: "ADD_POST",
@@ -37,24 +42,41 @@ const PostListProvider = ({ children }) => {
         subtitle: postSubtitle,
         body: postBody,
         reactions: 2,
-        userId: userId,
+        userId,
         tags: postTags,
       },
     });
   };
+
+  const addInitalPost = (posts) => {
+    const existingIds = new Set(
+      postList.map((post) => `${post.id}-${post.userId}`)
+    );
+
+    const uniqueNewPosts = posts.filter(
+      (post) => !existingIds.has(`${post.id}-${post.userId}`)
+    );
+
+    dispatchPostList({
+      type: "ADD_INITIAL_POST",
+      payload: uniqueNewPosts,
+    });
+  };
+
+  // Delete a post by ID
   const deletePost = ({ postId }) => {
     dispatchPostList({
       type: "DELETE_POST",
-      payload: {
-        postId,
-      },
+      payload: { postId },
     });
   };
+
   return (
     <PostList.Provider
       value={{
         postList,
         addPost,
+        addInitalPost,
         deletePost,
       }}
     >
@@ -62,25 +84,6 @@ const PostListProvider = ({ children }) => {
     </PostList.Provider>
   );
 };
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Going To Mumbai",
-    subtitle: "Travel",
-    body: "I am going to Mumbai for a business trip. I will be there for 3 days. I am looking forward to meeting my clients and exploring the city.",
-    reactions: 2,
-    userId: "user-9",
-    tags: ["vacation", "travel", "business", "mumbai"],
-  },
-  {
-    id: "2",
-    title: "Eating Out at Dominos",
-    subtitle: "Dominos",
-    body: "I am going to Dominos for a pizza party with my friends. I am looking forward to eating pizza and having fun.",
-    reactions: 5,
-    userId: "user-10",
-    tags: ["food", "pizza", "dominos", "party"],
-  },
-];
 
+// ✅ Default export: use this to wrap your App
 export default PostListProvider;
