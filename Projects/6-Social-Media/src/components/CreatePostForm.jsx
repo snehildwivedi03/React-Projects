@@ -22,7 +22,23 @@ const CreatePostForm = () => {
     const postSubtitle = postSubtitleElement.current.value;
     const postBody = postBodyElement.current.value;
     const postTags = postTagsElement.current.value.split(" ");
-    addPost(userId, postTitle, postSubtitle, postBody, postTags);
+    //server call
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: crypto.randomUUID(),
+        title: postTitle,
+        subtitle: postSubtitle,
+        body: postBody,
+        reactions: 2,
+        userId,
+        tags: postTags,
+      }),
+    })
+      .then((res) => res.json())
+      .then((resObj) => addPost(resObj));
+
     formRef.current.reset();
   };
   return (

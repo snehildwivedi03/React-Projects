@@ -1,10 +1,10 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState, useEffect } from "react";
 
 // ✅ Named export: use this when importing context in other components
 export const PostList = createContext({
   postList: [],
   addPost: () => {},
-  addInitalPost: () => {},
+  fetching: false,
   deletePost: () => {},
 });
 
@@ -28,23 +28,13 @@ const postListReducer = (currPostList, action) => {
 // ✅ Provider component
 const PostListProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
+  const [fetching, setFetching] = useState(false); // ✅ Moved here
 
   // Add single post
-  const addPost = (userId, postTitle, postSubtitle, postBody, postTags) => {
-    const randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    const uniqid = randLetter + Date.now();
-
+  const addPost = (post) => {
     dispatchPostList({
       type: "ADD_POST",
-      payload: {
-        id: uniqid,
-        title: postTitle,
-        subtitle: postSubtitle,
-        body: postBody,
-        reactions: 2,
-        userId,
-        tags: postTags,
-      },
+      payload: post,
     });
   };
 
@@ -63,7 +53,6 @@ const PostListProvider = ({ children }) => {
     });
   };
 
-  // Delete a post by ID
   const deletePost = ({ postId }) => {
     dispatchPostList({
       type: "DELETE_POST",
@@ -71,12 +60,38 @@ const PostListProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    if (postList.length > 0) return;
+
+    setFetching(true);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch("https://dummyjson.com/posts", { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        addInitalPost(data.posts);
+        setFetching(false);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+        } else {
+          console.error("Fetch error:", error);
+          setFetching(false);
+        }
+      });
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
   return (
     <PostList.Provider
       value={{
         postList,
         addPost,
-        addInitalPost,
+        fetching,
         deletePost,
       }}
     >
